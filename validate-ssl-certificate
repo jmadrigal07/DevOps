@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DAYS=10
+TIME=$((${DAYS}*24*1*3600))
+if ! true | openssl s_client -connect ${1}:443 2>/dev/null | \
+  openssl x509 -noout -checkend ${TIME} >/dev/null; then
+    echo "Certificado próximo a vender, revisarlo ${1}"
+fi
